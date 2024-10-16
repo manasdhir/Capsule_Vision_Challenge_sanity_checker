@@ -30,12 +30,13 @@ sample_df = pd.DataFrame(sample_data)
 def main():
     st.title("Capsule Vision Challenge 2024 Sanity Checker")
 
-    st.write("### Guidelines for Uploading CSV")
+    st.write("### Guidelines for Uploading Excel file")
     st.markdown("""
     1. **image_path** column should contain only the image name (e.g., `image.jpg`).
     2. **Predicted probabilities** for each class should be present along with the `predicted_class` column.
     3. **Predictions for all images** must be complete, with no blanks or missing values.
     4. Correct file can be generated from the code provided [here](https://github.com/misahub2023/Capsule-Vision-2024-Challenge/blob/main/sample_codes_for_participants/Evaluate_model.py)
+    5. Excel file name should be same as team name.
     """)
 
     st.write("### Example of the Expected CSV Format")
