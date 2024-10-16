@@ -28,7 +28,7 @@ sample_data = {
 sample_df = pd.DataFrame(sample_data)
 
 def main():
-    st.title("Image Classification Results Sanity Checker")
+    st.title("Capsule Vision Challenge 2024 Sanity Checker")
 
     st.write("### Guidelines for Uploading CSV")
     st.markdown("""
