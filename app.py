@@ -39,7 +39,7 @@ def main():
     5. Excel file name should be same as team name.
     """)
 
-    st.write("### Example of the Expected CSV Format")
+    st.write("### Example of the Expected Excel Format")
     st.dataframe(sample_df, hide_index=True)
 
     uploaded_file = st.file_uploader("Upload your CSV file", type=["xlsx"])
