@@ -28,6 +28,43 @@ sample_data = {
     "predicted_class": ["Ulcer", "Normal", "Lymphangiectasia", "Polyp"]
 }
 sample_df = pd.DataFrame(sample_data)
+sample_data_train={"image_path":["training\Angioectasia\KID\angioectasia-P0-1.jpg",
+                                "training\Angioectasia\KID\angioectasia-P0-2.jpg",
+                                "training\Angioectasia\KVASIR\04a78ef00c5245e0_11603.jpg",
+                                "training\Angioectasia\KVASIR\04a78ef00c5245e0_11605.jpg",
+                                ],
+                    "Dataset":["KID","KID","KVASIR","KVASIR"],
+                    "Angioectasia": [0.004180671, 5.31846E-06, 0.01316455, 1.81824E-06],
+    "Bleeding": [1.24772E-09, 2.6963E-05, 7.35843E-05, 1.31746E-06],
+    "Erosion": [0.007089304, 0.000178704, 0.000328246, 0.045647398],
+    "Erythema": [1.42296E-07, 0.05799336, 0.009602185, 0.001173414],
+    "Foreign Body": [0.038560923, 1.55969E-08, 0.190064773, 0.001607239],
+    "Lymphangiectasia": [2.79127E-05, 0.00050396, 0.721927106, 1.16342E-05],
+    "Normal": [0.018649779, 0.941272676, 4.30372E-05, 0.204296276],
+    "Polyp": [6.76447E-08, 1.89326E-05, 0.018246552, 0.747260571],
+    "Ulcer": [0.931491256, 6.26834E-08, 0.046549879, 3.51713E-07],
+    "Worms": [3.32206E-17, 3.29838E-10, 1.20817E-07, 3.123E-09]
+}
+sample_df_train=pd.DataFrame(sample_data_train)
+
+sample_data_val={"image_path":["validation\Angioectasia\KID\angioectasia-P0-3.jpg",
+                                "validation\Angioectasia\KID\angioectasia-P0-4.jpg",
+                                "validation\Angioectasia\KVASIR\04a78ef00c5245e0_11604.jpg",
+                                "validation\Angioectasia\KVASIR\04a78ef00c5245e0_11608.jpg",
+                                ],
+                    "Dataset":["KID","KID","KVASIR","KVASIR"],
+                    "Angioectasia": [0.004180671, 5.31846E-06, 0.01316455, 1.81824E-06],
+    "Bleeding": [1.24772E-09, 2.6963E-05, 7.35843E-05, 1.31746E-06],
+    "Erosion": [0.007089304, 0.000178704, 0.000328246, 0.045647398],
+    "Erythema": [1.42296E-07, 0.05799336, 0.009602185, 0.001173414],
+    "Foreign Body": [0.038560923, 1.55969E-08, 0.190064773, 0.001607239],
+    "Lymphangiectasia": [2.79127E-05, 0.00050396, 0.721927106, 1.16342E-05],
+    "Normal": [0.018649779, 0.941272676, 4.30372E-05, 0.204296276],
+    "Polyp": [6.76447E-08, 1.89326E-05, 0.018246552, 0.747260571],
+    "Ulcer": [0.931491256, 6.26834E-08, 0.046549879, 3.51713E-07],
+    "Worms": [3.32206E-17, 3.29838E-10, 1.20817E-07, 3.123E-09]
+}
+sample_df_val=pd.DataFrame(sample_data_val)
 
 def main():
     st.title("Capsule Vision Challenge 2024 Sanity Checker")
@@ -70,6 +107,17 @@ def test_mode():
 
 def training_mode():
     """Sanity check logic for Training Mode."""
+    st.write("### Guidelines for Uploading Excel file")
+    st.markdown("""
+    1. **image_path** column should contain the full relative image paths as provided in the true label file (e.g., `training\Angioectasia\KID\angioectasia-P0-1.jpg`).
+    2. **Predicted probabilities** for each class should be computed using the predict function and added to the file.
+    3. **Predictions for all images** must be complete, with no blanks or missing values.
+    4. Excel file name should be Teamname_predicted_train_dataset.xlsx
+    5. File should have 12 columns- image_path, Dataset, Angioectasia, Bleeding, Erosion, Erythema, Foreign Body, Lymphangiectasia, Normal, Polyp, Ulcer, Worms
+    """)
+
+    st.write("### Example of the Expected Excel Format")
+    st.dataframe(sample_df_train, hide_index=True)
     st.write("### Upload your Training Excel file")
     uploaded_file = st.file_uploader("Upload your Training CSV file", type=["xlsx"])
 
@@ -105,6 +153,17 @@ def training_mode():
 
 def validation_mode():
     """Sanity check logic for Validation Mode."""
+    st.write("### Guidelines for Uploading Excel file")
+    st.markdown("""
+    1. **image_path** column should contain the full relative image paths as provided in the true label file (e.g., `validation\Angioectasia\KVASIR\04a78ef00c5245e0_11608.jpg`).
+    2. **Predicted probabilities** for each class should be computed using the predict function and added to the file.
+    3. **Predictions for all images** must be complete, with no blanks or missing values.
+    4. Excel file name should be Teamname_predicted_train_dataset.xlsx
+    5. File should have 12 columns- image_path, Dataset, Angioectasia, Bleeding, Erosion, Erythema, Foreign Body, Lymphangiectasia, Normal, Polyp, Ulcer, Worms
+    """)
+
+    st.write("### Example of the Expected Excel Format")
+    st.dataframe(sample_df_val, hide_index=True)
     st.write("### Upload your Validation Excel file")
     uploaded_file = st.file_uploader("Upload your Validation CSV file", type=["xlsx"])
 
